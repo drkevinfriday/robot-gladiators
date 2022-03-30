@@ -13,15 +13,28 @@ var enemyAttack = 12;
 
 // fight function
 var fight = function(enemyName) {
-    while(enemyHealth >0){
+    while(enemyHealth >0 && playerHealth >0 ){
     
 
   // ask player if they'd like to fight or run
   var promptFight = window.prompt('Would you like to FIGHT or SKIP this battle? Enter "FIGHT" or "SKIP" to choose.');
 
   // if player choses to fight, fight
-  if (promptFight === "fight" || promptFight === "FIGHT") 
+  if (promptFight === "skip" || promptFight === "SKIP") 
   {
+    // confirm player wants to skip
+    var confirmSkip = window.confirm("Are you sure you'd like to quit?");
+
+    // if yes (true), leave fight
+    if (confirmSkip) {
+      window.alert(playerName + " has decided to skip this fight. Goodbye!");
+      // subtract money from playerMoney for skipping
+      playerMoney = playerMoney - 10;
+      console.log("playerMoney,", playerMoney);
+      break;
+    }
+}
+
     // remove enemy's health by subtracting the amount set in the playerAttack variable
     enemyHealth = enemyHealth - playerAttack;
     console.log(
@@ -31,6 +44,7 @@ var fight = function(enemyName) {
     // check enemy's health
     if (enemyHealth <= 0) {
       window.alert(enemyName + " has died!");
+      break;
     } else {
       window.alert(enemyName + " still has " + enemyHealth + " health left.");
     }
@@ -44,6 +58,7 @@ var fight = function(enemyName) {
     // check player's health
     if (playerHealth <= 0) {
       window.alert(playerName + " has died!");
+      break;
     } else {
       window.alert(playerName + " still has " + playerHealth + " health left.");
     }
@@ -59,7 +74,9 @@ var fight = function(enemyName) {
     if (confirmSkip) {
       window.alert(playerName + " has decided to skip this fight. Goodbye!");
       // subtract money from playerMoney for skipping
-      playerMoney = playerMoney - 2;
+      playerMoney = playerMoney - 10;
+      console.log("playerMoney,", playerMoney);
+      break;
     }
     // if no (false), ask question again by running fight() again
     else {
