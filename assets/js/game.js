@@ -76,25 +76,65 @@ console.log(
 
 
 // run fight function to start game
-for(var i  =0; i < enemyName.length; i++) {
-    if(playerHealth > 0){
-        window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
-    } else {
-        window.alert("You have lost your robot in battle! Game over");
-        break;
+//startGame Function
+var startGame = function ()
+{
+    //reset player stats
+    var playerHealth = 100;
+    var playerAttack = 10;
+    var playerMoney = 10
+
+    for(var i  =0; i < enemyName.length; i++) 
+    {
+        if(playerHealth > 0)
+        {
+            window.alert("Welcome to Robot Gladiators! Round " + (i + 1));
+        
+        // updates the enemy name from  the enemy array
+        var pickedEnemyName = enemyName[i];
+
+        // reset enemey heatlh to 50 for each new fighter
+        enemyHealth = 50;
+
+        // use the debugger to pause script from running and check what's going on at that moment n the code
+        // debugger; 
+
+        // calls the fight function on currently  fighter in the for loop
+        fight(pickedEnemyName);
+        }
+     
     }
-    // updates the enemy name from  the enemy array
-    var pickedEnemyName = enemyName[i];
-
-    // reset enemey heatlh to 50 for each new fighter
-    enemyHealth = 50;
-
-    // use the debugger to pause script from running and check what's going on at that moment n the code
-    // debugger; 
-
-    // calls the fight function on currently  fighter in the for loop
-    fight(pickedEnemyName);
+    endGame();
+    
 };
+
+// end game function
+var endGame = function(){
+    if (playerHealth > 0){
+        window.alert('Great job you survived the game! You now have a score' );
+    }
+    else {
+        window.alert("You've lost your robot in battle");
+    }
+
+
+//  Ask the player if they want to play the game again
+
+    
+    var playAgainConfirm = window.confirm("Would you like to try again")
+    // test confirm window
+    if(playAgainConfirm)
+    {
+        startGame();
+    }
+    else 
+    {
+        window.alert("Thanks for playing Robot Gladiators see you next battle!")
+    }
+
+}
+
+startGame();
 
 
 // wrap the game logic in a startGame() function
@@ -116,5 +156,3 @@ for(var i  =0; i < enemyName.length; i++) {
 //              if leave, alert  goodbye and exit the function
 
 //              if any other invalid  option, call shop() again
-
-
