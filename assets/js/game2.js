@@ -28,10 +28,9 @@ var fight = function(enemyName) {
       }
     }
 
-   // generate random damage value based on player's attack power
-    var damage = randomNumber(playerAttack - 3, playerAttack);
+    
     // remove enemy's health by subtracting the amount set in the playerAttack variable
-    enemyHealth = Math.max(0,enemyHealth - damage);
+    enemyHealth = enemyHealth - playerAttack;
     console.log(
       playerName + ' attacked ' + enemyName + '. ' + enemyName + ' now has ' + enemyHealth + ' health remaining.'
     );
@@ -48,10 +47,9 @@ var fight = function(enemyName) {
     } else {
       window.alert(enemyName + ' still has ' + enemyHealth + ' health left.');
     }
-    // generate random damage value based on player's attack power
-    var damage = randomNumber(enemyAttack - 3, playerAttack);
+
     // remove players's health by subtracting the amount set in the enemyAttack variable
-    playerHealth = Math.max(0,playerHealth - damage);
+    playerHealth = playerHealth - enemyAttack;
     console.log(
       enemyName + ' attacked ' + playerName + '. ' + playerName + ' now has ' + playerHealth + ' health remaining.'
     );
@@ -85,7 +83,7 @@ var startGame = function() {
       var pickedEnemyName = enemyNames[i];
 
       // reset enemyHealth before starting new fight
-      enemyHealth = randomNumber(40,60);
+      enemyHealth = 50;
 
       // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
       fight(pickedEnemyName);
